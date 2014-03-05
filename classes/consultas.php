@@ -32,4 +32,5 @@ $Util = new Utilidades;
 
 $sql = "select * from entidades";
 $Util->setSql($sql);
-$Util->executesql();
+$Util->updateMass();
+
