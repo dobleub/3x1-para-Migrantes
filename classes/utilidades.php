@@ -53,6 +53,5 @@ class Utilidades extends Connection{
 			}
 		}
 	}
-
 }
 

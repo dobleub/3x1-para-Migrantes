@@ -30,7 +30,7 @@ require_once("utilidades.php");
 
 $Util = new Utilidades;
 
-$sql = "select * from entidades";
+$sql = "select * from estados";
 $Util->setSql($sql);
-$Util->updateMass();
+$Util->executesql();
 
