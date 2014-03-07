@@ -22,11 +22,7 @@
  * 
  */
 
-//function __autoload($class){
-	//include strtolower($class)."php";
-//}
-
-include "connection.php";
+include "autoload.php";
 
 class Login extends Connection{
 	private $user;

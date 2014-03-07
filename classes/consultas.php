@@ -22,15 +22,56 @@
  * 
  */
 
-//function __autoload($class){
-	//include strtolower($class)."php";
-//}
-
-require_once("utilidades.php");
-
+include "autoload.php";
+	
 $Util = new Utilidades;
 
-$sql = "select * from estados";
+$sql = "call v_persona_essential('oose880121HOC...',@echo)";
 $Util->setSql($sql);
-$Util->executesql();
+$info = $Util->executesql();
+
+##################################################################################
+
+//echo "<table border='2'>
+	//<tr>
+		//<td>id</td>
+		//<td>clave</td>
+		//<td>nombre</td>
+		//<td>abrev</td>
+	//</tr>";
+//foreach($info as $row){					// este si funciona pero no es dinamico
+	////$result = var_dump($row);
+	//$result = (array) $row;
+		//echo "<tr>
+				//<td>".$result['id']."</td>
+				//<td>".$result['clave']."</td>
+				//<td>".$result['nombre']."</td>
+				//<td>".$result['abrev']."</td>
+			//</tr>";
+//}
+//echo "</table>";
+
+##################################################################################
+
+echo "<table border='1'>";
+foreach($info as $row){
+	$result = (array) $row;
+	echo "<tr>";
+	foreach($result as $key => $value){
+		//echo $item[$key] = $value;
+		echo "<td>".$key."</td>";
+	}
+	echo "</tr>";
+	
+	echo "<tr>";
+	foreach($result as $key => $value){
+		//echo $item[$key] = $value;
+		echo "<td>".$item[$key] = $value."</td>";
+	}
+	echo "</tr>";
+}
+echo "</table>";
+
+mysql_info();
+mysql_error();
 

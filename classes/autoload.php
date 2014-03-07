@@ -1,6 +1,6 @@
 <?php
 /*
- * utilidades.php
+ * autoload.php
  * 
  * Copyright 2014 dobleub <dobleub@MARY-LAPTOP>
  * 
@@ -22,36 +22,8 @@
  * 
  */
 
-//function __autoload($class){
-	//include strtolower($class)."php";
-//}
-
-require_once("connection.php");
-
-class Utilidades extends Connection{
-	private $sql;
-	private $result = array();
-	
-	public function setSql($sql){
-		$this->sql = $sql;
-	}
-	public function getSql(){
-		return $this->sql;
-	}
-	
-	public function executesql(){
-		$pdo = parent::getConnection();
-		
-		$log = $pdo->prepare($this->getSql());
-		$log->execute();
-		
-		//$info = $log->fetch(PDO::FETCH_OBJ);
-		$info = $log->fetchAll(PDO::FETCH_OBJ);
-		if (count($info)):
-			return $info;
-		else:
-			print "Error: Datos insuficientes";
-		endif;
-	}
+function __autoload($class){
+	include strtolower($class).".php";
 }
 
+?>
