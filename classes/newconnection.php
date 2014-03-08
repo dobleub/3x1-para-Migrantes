@@ -25,33 +25,25 @@
 abstract class Connection{
 	const user = "root";
 	const passwd = "";
-	const dsn = "mysql:host=localhost;dbname=sedesis";
 	
 	private static $instance = null;
 	
-	public function __construct(){
-		self::$instance = new PDO(self::dsn,  self::user, self::passwd);
-		self::$instance -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	
+	private static function start_connection(){
+		try{
+			if(self::$instance == null):
+				$dsn = "mysql:host=localhost;dbname=sedesis";
+				self::$instance = new PDO($dsn,  self::user, self::passwd);
+				self::$instance -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	
+			endif;
+		} catch (PDOException $e){
+			echo "Error= ".$e->getMessage();
+		}
+	
+	return self::$instance;
 	}
 	
-	private function start_connection(){
-        if (!isset(self::$instance)) {
-            $miclase = __CLASS__;
-            self::$instance = new $miclase;
-        } 
-        return self::$instance;
-    }
-
 	protected static function getConnection(){
 		return self::start_connection();
-	}
-	
-	public function __clone(){
-		trigger_error('Error de clase duplicada.', E_USER_ERROR);
-	}
-	public function __wakeup()
-	{
-	  trigger_error("No puede deserializar una instancia de ". get_class($this) .".", E_USER_ERROR );
 	}
 }
 
