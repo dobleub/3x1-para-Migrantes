@@ -22,7 +22,7 @@
  * 
  */
 
-include "autoload.php";
+require_once("connection.php");
 
 class Login extends Connection{
 	private $user;
@@ -44,7 +44,7 @@ class Login extends Connection{
 	public function loging(){
 		$pdo = parent::getConnection();
 		
-		$log = $pdo->prepare("select * from usuarios where curp = ? and passwd = ?");
+		$log = $pdo->prepare("select curp from usuarios where curp = ? and passwd = ?");
 		$log -> bindValue(1,$this->getUser());
 		$log -> bindValue(2,$this->getPasswd());
 		$log -> execute();
@@ -56,6 +56,14 @@ class Login extends Connection{
 			return true;
 		else:
 			return false;
+		endif;
+	}
+	
+	public static function logout(){	//asi no es necesario instanciar de nuevo la clase para poder ocuparla
+		if(isset($_SESSION['login'])):
+			unset($_SESSION['login']);
+			session_destroy();
+			header("Location: http://localhost/www/3x1-migrantes/classes/");
 		endif;
 	}
 }

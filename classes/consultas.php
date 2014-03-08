@@ -26,7 +26,7 @@ include "autoload.php";
 	
 $Util = new Utilidades;
 
-$sql = "call v_persona_essential('oose880121HOC...',@echo)";
+$sql = "call v_persona_telefonos('SALA981201HOC...',@echo)";
 $Util->setSql($sql);
 $info = $Util->executesql();
 
