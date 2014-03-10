@@ -22,13 +22,39 @@
  * 
  */
 
-include "autoload.php";
-	
+include "../autoload.php";
+include "../lib/password.php";
+
+function generaPass(){
+	$cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+	$longitudCadena=strlen($cadena);
+
+	$pass = "";
+	$longitudPass=10;
+
+	for($i=1 ; $i<=$longitudPass ; $i++){
+		$pos=rand(0,$longitudCadena-1);
+		$pass .= substr($cadena,$pos,1);
+	}
+	return $pass;
+}
+$password = generaPass();
+echo $password;
+echo "<br/>";
+$hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => 10]);
+echo $hash;
+echo "<br/>";
+$match = password_verify($password, $hash);
+echo $match;
+echo "<br/>";
+
 $Util = new Utilidades;
 
-$sql = "call v_persona_telefonos('SALA981201HOC...',@echo)";
+$sql = "call v_niveles_idiomas('av')";
 $Util->setSql($sql);
 $info = $Util->executesql();
+
+
 
 ##################################################################################
 
@@ -53,24 +79,26 @@ $info = $Util->executesql();
 
 ##################################################################################
 
-echo "<table border='1'>";
-foreach($info as $row){
-	$result = (array) $row;
-	echo "<tr>";
-	foreach($result as $key => $value){
-		//echo $item[$key] = $value;
-		echo "<td>".$key."</td>";
+if (count($info)):
+	echo "<table border='1'>";
+	foreach($info as $row){
+		$result = (array) $row;
+		echo "<tr>";
+		foreach($result as $key => $value){
+			//echo $item[$key] = $value;
+			echo "<td>".$key."</td>";
+		}
+		echo "</tr>";
+		
+		echo "<tr>";
+		foreach($result as $key => $value){
+			//echo $item[$key] = $value;
+			echo "<td>".$item[$key] = $value."</td>";
+		}
+		echo "</tr>";
 	}
-	echo "</tr>";
-	
-	echo "<tr>";
-	foreach($result as $key => $value){
-		//echo $item[$key] = $value;
-		echo "<td>".$item[$key] = $value."</td>";
-	}
-	echo "</tr>";
-}
-echo "</table>";
+	echo "</table>";
+endif;
 
 mysql_info();
 mysql_error();

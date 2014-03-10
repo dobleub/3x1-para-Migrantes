@@ -22,11 +22,7 @@
  * 
  */
 
-//function __autoload($class){
-	//include strtolower($class)."php";
-//}
-
-require_once("connection.php");
+require_once("lib/connection.php");
 
 class Utilidades extends Connection{
 	private $sql;

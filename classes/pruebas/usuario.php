@@ -24,7 +24,7 @@
 
 session_start();
 
-include "autoload.php";
+include "../autoload.php";
 
 if(isset($_GET['logout'])):
 	if($_GET['logout']=='ok'):

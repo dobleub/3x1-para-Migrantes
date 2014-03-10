@@ -1,5 +1,0 @@
-DB version 0
-Base de datos: sedesis
-https://www.dropbox.com/s/soxan0na7s98aw7/sedesis.sql
-el archivo pesa 27M asi que se necesita ejecutar el script desde consola
-mysql> source /directorio/de/basededatos.sql

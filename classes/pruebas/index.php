@@ -23,7 +23,7 @@
  */
 session_start();
 
-include "autoload.php";
+include "../autoload.php";
 
 if(isset($_POST['entrar'])):
 	$user = filter_input(INPUT_POST,"usuario",FILTER_SANITIZE_MAGIC_QUOTES);

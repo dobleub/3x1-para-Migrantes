@@ -22,7 +22,7 @@
  * 
  */
 
-require_once("connection.php");
+require_once("lib/connection.php");
 
 class Login extends Connection{
 	private $user;
@@ -63,7 +63,7 @@ class Login extends Connection{
 		if(isset($_SESSION['login'])):
 			unset($_SESSION['login']);
 			session_destroy();
-			header("Location: http://localhost/www/3x1-migrantes/classes/");
+			header("Location: http://localhost/www/3x1-migrantes/classes/pruebas");
 		endif;
 	}
 }
